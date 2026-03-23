@@ -165,8 +165,7 @@ def ucb(initial_sample_size, n, arm_info, print_result=False):
 # Creates a grid for tuning hyperparameters
 def grid(max_value, step):
     grid = list(range(0, max_value + 1, step))
-    grid.pop(0)
-    return grid
+    return grid[1:]
 
 
 # Allows for model specification and tuning
@@ -202,15 +201,3 @@ class model:
     def test(self):
         self.model_type(self.parameter, self.number_of_pulls,
                         self.arm_info, print_result=True)
-
-
-# Setting the properties of each arm (example)
-arm_info_1 = np.array([
-    # mean, sd, pulls, sample_mean, reward, upper_confidence_bound, sample_sd, skew_factor
-    # All except mean, sd and skew_factor (if a skewed norm distribution is desired) should be 0.
-    [50, 1, 0, 0, 0, 0, 0, 5],
-    [45, 2, 0, 0, 0, 0, 0, 2],
-    [46, 1.5, 0, 0, 0, 0, 0, 6],
-    [30, 0.5, 0, 0, 0, 0, 0, -3],
-    [30, 0.5, 0, 0, 0, 0, 0, -4]
-])
